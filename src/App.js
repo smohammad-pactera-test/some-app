@@ -1,28 +1,30 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Provider } from 'react-redux';
+import configStore from './store';
+import Main from './components';
+import '../src/css/main.css'
+
+
+export const CustomProvider = ({ children }) => {
+    return (
+        <Provider store={ configStore() }>
+            { children }
+        </Provider>
+    );
+
+};
+
+
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+    render() {
+        return (
+            <CustomProvider>
+                <Main />
+            </CustomProvider>
+        );
+    }
 }
 
 export default App;
